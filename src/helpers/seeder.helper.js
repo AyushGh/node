@@ -12,14 +12,14 @@ module.exports.seed = async (log = true) => {
 
     await Promise.all(
         Array.from(Array(100).keys()).map(async () => {
-            const resp = User.create({
+                const resp = await User.create({
                 name: faker.name.firstName()
             });
             if (log) console.log("Created user's name: ", resp.name);
 
             await Promise.all(
                 Array.from(Array(2).keys()).map(async () => {
-                    Post.create({
+                    await Post.create({
                         userId: resp._id,
                         title: faker.lorem.sentence(),
                         description: faker.lorem.paragraph(10)
